@@ -68,7 +68,7 @@ public class ExcelManager {
             row.createCell(3).setCellValue(cita.getMedico().getTipoPersona());
             row.createCell(4).setCellValue(cita.getFecha());
             row.createCell(5).setCellValue(cita.getHora());
-            row.createCell(6).setCellValue(cita.getTipoCita()); // Polimorfismo
+            row.createCell(6).setCellValue(cita.getTipoCita()); 
 
             // Si es una cita virtual, se guarda el enlace
             if (cita instanceof CitaVirtual) {
