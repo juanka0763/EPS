@@ -10,8 +10,8 @@ package Modelo;
  */
 public class CitaPresencial extends Cita {
 
-    public CitaPresencial(Paciente paciente, Medico medico, String fecha, String hora) {
-        super(paciente, medico, fecha, hora);
+    public CitaPresencial(Paciente paciente, Medico medico, String año, String mes, String dia, String hora) {
+        super(paciente, medico, año, mes, dia, hora);
     }
 
     @Override

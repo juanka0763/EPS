@@ -16,7 +16,7 @@ public class Medico extends Persona {
         super(nombre, id);
         this.especialidad = especialidad;
     }
-
+    
     @Override
     public String getTipoPersona() {
         return especialidad;

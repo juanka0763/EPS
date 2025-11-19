@@ -12,8 +12,8 @@ public class CitaVirtual extends Cita {
 
     private String enlace;
 
-    public CitaVirtual(Paciente paciente, Medico medico, String fecha, String hora, String enlace) {
-        super(paciente, medico, fecha, hora);
+    public CitaVirtual(Paciente paciente, Medico medico, String año, String mes, String dia, String hora, String enlace) {
+        super(paciente, medico, año, mes, dia, hora);
         this.enlace = enlace;
     }
 

@@ -19,6 +19,6 @@ public class Paciente extends Persona {
 
     @Override
     public String getTipoPersona() {
-        return "Paciente";   
+        return telefono;   
     }
 }

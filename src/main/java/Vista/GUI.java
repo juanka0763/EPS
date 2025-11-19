@@ -39,6 +39,7 @@ public class GUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         Paciente = new javax.swing.JButton();
         Medico = new javax.swing.JButton();
+        Cerrar = new javax.swing.JButton();
 
         jMenu1.setText("jMenu1");
 
@@ -64,11 +65,23 @@ public class GUI extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Identificate:");
 
+        Paciente.setBackground(new java.awt.Color(204, 0, 0));
+        Paciente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Paciente.setForeground(new java.awt.Color(255, 255, 255));
         Paciente.setText("Paciente (ageda tu cita)");
         Paciente.addActionListener(this::PacienteActionPerformed);
 
+        Medico.setBackground(new java.awt.Color(204, 0, 51));
+        Medico.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Medico.setForeground(new java.awt.Color(255, 255, 255));
         Medico.setText("Médico (registrate)");
         Medico.addActionListener(this::MedicoActionPerformed);
+
+        Cerrar.setBackground(new java.awt.Color(204, 0, 0));
+        Cerrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Cerrar.setForeground(new java.awt.Color(255, 255, 255));
+        Cerrar.setText("Cerrar");
+        Cerrar.addActionListener(this::CerrarActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -80,7 +93,8 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(Medico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Paciente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Paciente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Cerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -94,7 +108,9 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(Paciente)
                 .addGap(18, 18, 18)
                 .addComponent(Medico)
-                .addGap(28, 28, 28))
+                .addGap(18, 18, 18)
+                .addComponent(Cerrar)
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -105,25 +121,34 @@ public class GUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void MedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MedicoActionPerformed
-        Medico panel = new Medico();   // <-- tu JPanel llamado "Medico"
+        PanelMedico panel = new PanelMedico();   // <-- tu JPanel llamado "PanelMedico"
         setContentPane(panel);
         revalidate();
         repaint();
+        pack();
+        setLocationRelativeTo(null);
+
     }//GEN-LAST:event_MedicoActionPerformed
 
     private void PacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PacienteActionPerformed
-        Paciente panel = new Paciente();
+        PanelPaciente panel = new PanelPaciente();
         setContentPane(panel);
         revalidate();
         repaint();
+        pack();
+        setLocationRelativeTo(null);
     }//GEN-LAST:event_PacienteActionPerformed
+
+    private void CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_CerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,6 +176,7 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cerrar;
     private javax.swing.JButton Medico;
     private javax.swing.JButton Paciente;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
