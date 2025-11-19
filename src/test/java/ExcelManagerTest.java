@@ -16,24 +16,64 @@ import Controlador.ExcelManager;
  *
  * @author juank
  */
+import Modelo.*;
+import Controlador.ExcelManager;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.*;
+
 public class ExcelManagerTest {
 
+    private static final String FILE_PATH = "registros_citas.xlsx";
+
+    @BeforeEach
+    public void limpiarArchivo() {
+        File f = new File(FILE_PATH);
+        if (f.exists()) f.delete();
+    }
+
     @Test
-    public void testGuardarCita() {
+    public void testGuardarCita() throws Exception {
 
-        // Crear objetos de prueba
-        Paciente paciente = new Paciente("Juan Pérez", "12345678A", "600123123");
-        Medico medico = new Medico("Dra. Marta López", "99887766B", "Cardiología");
+        Paciente p = new Paciente("Danna", "12345678A", "600123123");
+        Medico m = new Medico("Alejandro", "99887766B", "General");
 
-        Cita cita = new CitaPresencial(paciente, medico, "2025-01-20", "10:00");
+        Cita cita = new CitaPresencial(p, m, "2025", "05", "30", "16:00");
 
         ExcelManager excel = new ExcelManager();
-
-        // Guardar cita
         excel.guardarCita(cita);
 
-        // Verificar que el archivo existe
-        File archivo = new File("registros_citas.xlsx");
-        assertTrue(archivo.exists(), "El archivo Excel no fue creado correctamente.");
+        File archivo = new File(FILE_PATH);
+        assertTrue(archivo.exists(), "El archivo Excel no fue creado.");
+
+        try (FileInputStream input = new FileInputStream(FILE_PATH);
+             Workbook workbook = new XSSFWorkbook(input)) {
+
+            Sheet sheet = workbook.getSheet("Citas");
+            assertNotNull(sheet, "La hoja 'Citas' no existe.");
+
+            Row row = sheet.getRow(1); 
+            assertNotNull(row, "La fila de la cita no fue creada.");
+
+            assertEquals("Danna", row.getCell(0).getStringCellValue());
+            assertEquals("12345678A", row.getCell(1).getStringCellValue());
+            assertEquals("600123123", row.getCell(2).getStringCellValue());  
+            assertEquals("Alejandro", row.getCell(3).getStringCellValue());
+            assertEquals("99887766B", row.getCell(4).getStringCellValue());
+            assertEquals("General", row.getCell(5).getStringCellValue());
+            assertEquals("2025", row.getCell(6).getStringCellValue());
+            assertEquals("05", row.getCell(7).getStringCellValue());
+            assertEquals("30", row.getCell(8).getStringCellValue());
+            assertEquals("16:00", row.getCell(9).getStringCellValue());
+            assertEquals("Presencial", row.getCell(10).getStringCellValue());
+            assertEquals("-", row.getCell(11).getStringCellValue());
+        }
     }
 }
